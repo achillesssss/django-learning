@@ -1,8 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.utils import timezone
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from django.utils import timezone
-from django.shortcuts import redirect
 
 from .models import Message
 from .forms import MessageForm, UserForm
@@ -22,10 +21,10 @@ def conversation(request):
             msg.created_date = timezone.now()
             msg.save()
             form = MessageForm()
-            return render(request, 'chat/chat.html',{'msgs': messages, 'form': form, 'users': users})
+            return render(request, 'chat/chat.html', {'msgs': messages, 'form': form, 'users': users})
     else:
         form = MessageForm()
-    return render(request, 'chat/chat.html',{'msgs': messages,'form': form, 'users': users})
+    return render(request, 'chat/chat.html', {'msgs': messages,'form': form, 'users': users})
 
 
 def signup(request):
