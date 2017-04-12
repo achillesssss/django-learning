@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <!-- This file has been downloaded from Bootsnipp.com. Enjoy! -->
-    <title>Chat Whatsapp - Bootsnipp.com</title>
+    <title>Inspilab - Chat app</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
@@ -229,70 +229,23 @@ body::-webkit-scrollbar {
 <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans"/>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
+<header>
+    <!-- <h1>Django Simple Login</h1> -->
+    {% if user.is_authenticated %}
+      Hi {{ user.username }}!
+      <a href="{% url 'logout' %}">Log out</a>
+    {% else %}
+      <a href="{% url 'login' %}">Log in</a>
+    {% endif %}
+</header>
+
 <div class="container fill">
     <div class="row chat-wrap">
 
         <!-- Contacts & Conversations -->
-        <div class="col-sm-3 panel-wrap">
-
-            <!-- Overlay Menu / Contacts -->
-            <div class="col-sm-12 section-wrap collapse" id="Contacts">
-
-                <!--Header-->
-                <div class="row header-wrap">
-                    <div class="chat-header col-sm-12">
-                        <h4>Select a Contact</h4>
-                        <div class="header-button">
-                            <a class="btn pull-right" href="#Contacts" data-toggle="collapse">
-                                <i class="fa fa-close"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Contacts-->
-                <div class="row content-wrap">
-                    <div class="contact btn">
-                        <div class="media-body">
-                            <h5 class="media-heading">Walter White</h5>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <!--Left Menu / Conversation List-->
-            <div class="col-sm-12 section-wrap">
-
-                <!--Header-->
-                <div class="row header-wrap">
-                    <div class="chat-header col-sm-12">
-                        <h4 id="username">Andres Elizondo</h4>
-                        <div class="header-button">
-                            <a class="btn pull-right" href="#Contacts" data-toggle="collapse">
-                                <i class="fa fa-pencil-square-o fa-lg"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!--Conversations-->
-<!--                 <div class="row content-wrap">
-                    <div class="conversation btn">
-                        <div class="media-body">
-                            {% for user in users %}
-                                <h5 class="media-heading">{{user}}</h5>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div> -->
-
-            </div>
-
-        </div>
-
+   
         <!-- Messages & Info -->
-        <div class="col-sm-9 panel-wrap">
+        <div class="col-sm-12 panel-wrap">
 
             <!--Main Content / Message List-->
             <div class="col-sm-9 section-wrap" id="Messages">
@@ -300,7 +253,7 @@ body::-webkit-scrollbar {
                 <!--Header-->
                 <div class="row header-wrap">
                     <div class="chat-header col-sm-12">
-                        <h4>Conversation</h4>
+                        <h4>Chat room</h4>
                         <div class="header-button">
                             <a class="btn pull-right info-btn">
                                 <i class="fa fa-info-circle fa-lg"></i>
@@ -315,8 +268,8 @@ body::-webkit-scrollbar {
                     <div class="msg">
                         <div class="media-body">
                             <small class="pull-right time"><i class="fa fa-clock-o"></i>{{msg.created_date}}</small>
-
                             <h5 class="media-heading">{{msg.content}}</h5>
+                            <small>{{msg.snder}}</small>
                         </div>
                     </div>
                     {% endfor %}
@@ -331,6 +284,7 @@ body::-webkit-scrollbar {
                                 {{ form.as_p }}
                                 <button type="submit" class="save btn btn-default">Send</button>
                             </form>
+                        </div>
                     {% endblock %}
                     </div>
                 </div>
@@ -343,7 +297,7 @@ body::-webkit-scrollbar {
                 <!--Header-->
                 <div class="row header-wrap">
                     <div class="chat-header col-sm-12">
-                        <h4>Conversation Info</h4>
+                        <h4>User List</h4>
                         <div class="header-button">
                             <a class="btn pull-right info-btn">
                                 <i class="fa fa-close"></i>
@@ -354,30 +308,14 @@ body::-webkit-scrollbar {
 
                 <!--Members-->
                 <div class="row content-wrap">
+                    {% for user in users %}
                     <div class="contact">
                         <div class="media-body">
-                            <h5 class="media-heading">Walter White</h5>
-                            <small class="pull-left time"><i>Owner</i></small>
+                            <h5 class="media-heading">{{user.username}}</h5>
+                            <!-- <small class="pull-left time"><i>Owner</i></small> -->
                         </div>
                     </div>
-                    <div class="contact">
-                        <div class="media-body">
-                            <h5 class="media-heading">Walter White</h5>
-                            <small class="pull-left time"><i>Invited</i></small>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <div class="media-body">
-                            <h5 class="media-heading">Walter White</h5>
-                            <small class="pull-left time"><i>Owner</i></small>
-                        </div>
-                    </div>
-                    <div class="contact">
-                        <div class="media-body">
-                            <h5 class="media-heading">Walter White</h5>
-                            <small class="pull-left time"><i>Invited</i></small>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
 
             </div>
