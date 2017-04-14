@@ -9,7 +9,7 @@ class Message(models.Model):
     created_date = models.DateTimeField(default=timezone.now)   
     snder = models.ForeignKey(User, related_name='sender')
 
-    def __str__(self):
-        return self.content
+    # def __str__(self):
+    #     return self.content
 
 
