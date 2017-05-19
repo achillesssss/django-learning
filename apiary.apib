@@ -1,80 +1,136 @@
 FORMAT: 1A
-HOST: http://polls.apiblueprint.org/
+HOST: http://inspitrip.com/
 
-# Polls API
+# Users API
 
-Polls is a simple API allowing consumers to view polls and vote in them.
+Users is a set of APIs for users who are staff
 
-## Questions Collection [/questions]
+## Users Collection [/users]
 
-### List All Questions [GET]
+### List All Users [GET]
 
 + Response 200 (application/json)
 
-        [
-            {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 2048
-                    }, {
-                        "choice": "Python",
-                        "votes": 1024
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 512
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 256
-                    }
-                ]
-            }
+        {
+            "count":1,
+            "next":null,
+            "previous":null,
+            "results": [
+                {
+                    "id": 1,
+                    "password": "pbkdf2_sha256$36000$BzUx78U8OjLu$OT+swriwAhhkNBqNwm26obpmlGIBX3NtxZbhwzRQekU=",
+                    "last_login": "2017-05-19T09:26:05.131128Z",
+                    "is_superuser": true,
+                    "email": "nguyen@mail.com",
+                    "first_name": null,
+                    "last_name": null,
+                    "photo": null,
+                    "nationality": null,
+                    "birthday": null,
+                    "gender": null,
+                    "title": null,
+                    "date_joined": "2017-05-15T08:50:04.494382Z",
+                    "last_active": "2017-05-19T09:26:16.343600Z",
+                    "social_contact": {},
+                    "verified_token": null,
+                    "verified_token_start": null,
+                    "verified_token_expired": "2017-05-15T08:50:04.494430Z",
+                    "is_block": false,
+                    "block_reason": null,
+                    "is_verified": false,
+                    "is_staff": true,
+                    "is_active": true,
+                    "is_localguide": false,
+                    "total_reviews": 0,
+                    "rating": 0.0,
+                    "tags": [],
+                    "phone": null,
+                    "warning": 0,
+                    "is_ambassador": false,
+                    "is_licensed": null,
+                    "is_featured": false,
+                    "hourly_rate": 0.0,
+                    "address": null,
+                    "about": null,
+                    "description": null,
+                    "video": null,
+                    "score": 0,
+                    "state": "init",
+                    "is_old_password": false,
+                    "salt": null,
+                    "uid": null,
+                    "slug": null,
+                    "place": null,
+                    "groups": [],
+                    "user_permissions": []
+        }
         ]
+        }
 
-### Create a New Question [POST]
-
-You may create your own question using this action. It takes a JSON
-object containing a question and a collection of answers in the
-form of choices.
+### Create a New User [POST]
 
 + Request (application/json)
 
         {
-            "question": "Favourite programming language?",
-            "choices": [
-                "Swift",
-                "Python",
-                "Objective-C",
-                "Ruby"
-            ]
+            "email": "nguyen@mail.com",
+            "password": "nguyendeptrai",
+            "first_name": "Cheo",
+            "last_name": "Dao",
         }
 
 + Response 201 (application/json)
 
     + Headers
 
-            Location: /questions/2
+            Location: /users/2
 
     + Body
 
             {
-                "question": "Favourite programming language?",
-                "published_at": "2015-08-05T08:40:51.620Z",
-                "choices": [
-                    {
-                        "choice": "Swift",
-                        "votes": 0
-                    }, {
-                        "choice": "Python",
-                        "votes": 0
-                    }, {
-                        "choice": "Objective-C",
-                        "votes": 0
-                    }, {
-                        "choice": "Ruby",
-                        "votes": 0
-                    }
-                ]
+                  "id": 2,
+                  "password": "",
+                  "last_login": null,
+                  "is_superuser": false,
+                  "email": "",
+                  "first_name": "Nguyen",
+                  "last_name": "Dao",
+                  "photo": null,
+                  "nationality": "VietNam",
+                  "birthday": null,
+                  "gender": "male",
+                  "title": "professional guide",
+                  "date_joined": "2017-05-19T10:56:16.072097Z",
+                  "last_active": null,
+                  "social_contact": {},
+                  "verified_token": null,
+                  "verified_token_start": null,
+                  "verified_token_expired": "2017-05-19T10:56:16.072151Z",
+                  "is_block": false,
+                  "block_reason": null,
+                  "is_verified": false,
+                  "is_staff": false,
+                  "is_active": false,
+                  "is_localguide": false,
+                  "total_reviews": 4,
+                  "rating": "4.5",
+                  "tags": [],
+                  "phone": "13256456464",
+                  "warning": 0,
+                  "is_ambassador": false,
+                  "is_licensed": null,
+                  "is_featured": false,
+                  "hourly_rate": "10",
+                  "address": "44 Le Duan, Quan 13, Tp HCM",
+                  "about": "Song noi tam, yeu mau tim, thich ... 1 minh",
+                  "description": "Dep trai vo dich khap vu tru",
+                  "video": null,
+                  "score": 0,
+                  "state": "init",
+                  "is_old_password": false,
+                  "salt": null,
+                  "uid": null,
+                  "slug": null,
+                  "place": null,
+                  "groups": [],
+                  "user_permissions": []
             }
