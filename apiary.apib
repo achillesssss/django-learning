@@ -1,8 +1,8 @@
 FORMAT: 1A
 HOST: http://inspitrip.com/
 
-# Users API
-
+# Inspitrip API
+# group Users
 Users is a set of APIs for users who are staff
 
 ## Users Collection [/users/]
@@ -67,7 +67,7 @@ Users is a set of APIs for users who are staff
             ]
         }
 
-### Create a New User [POST]
+### Create a new User [POST]
 
 + Request (application/json)
 
@@ -264,4 +264,142 @@ Users is a set of APIs for users who are staff
 
 ### Delete a specific User [DELETE]
 
-+ Response 204
++ Response 204 
+
+# group Locals
+
+## Locals Collection [/locals/]
+
+### Local List [GET]
+
++ Response 200 (application/json)
+        
+        {
+            "count": 1,
+            "next": null,
+            "previous": null,
+            "results": [
+                {
+                    "id": 6,
+                    "password": "",
+                    "last_login": null,
+                    "is_superuser": false,
+                    "email": "",
+                    "first_name": null,
+                    "last_name": null,
+                    "photo": null,
+                    "nationality": null,
+                    "birthday": null,
+                    "gender": null,
+                    "title": null,
+                    "social_contact": {},
+                    "tags": [],
+                    "phone": null,
+                    "warning": 0,
+                    "hourly_rate": 0,
+                    "address": null,
+                    "about": null,
+                    "description": null,
+                    "video": null,
+                    "score": 0,
+                    "state": "init",
+                    "is_old_password": false,
+                    "salt": null,
+                    "uid": null,
+                    "slug": "",
+                    "place": null,
+                    "groups": [],
+                    "user_permissions": []
+                }
+            ]
+        }
+        
+### Create a new Local [POST]
+
++ Request (application/json)
+
+        {
+            "email": "nguyen.dao@inspilab.com",
+            "password": "asdfasdfasdf",
+            "first_name": "Nguyen",
+            "last_name": "Dao"
+        }
+        
++ Repsonse 201 (application/json)
+
+        + Headers
+        
+                Location: /locals/2/
+                
+        + Body
+                
+                {
+                    "id": 7,
+                    "password": "asdfasdfasdf",
+                    "last_login": null,
+                    "is_superuser": false,
+                    "email": "nguyen@inspilab.com",
+                    "first_name": "cheodao",
+                    "last_name": "dao",
+                    "photo": null,
+                    "nationality": null,
+                    "birthday": null,
+                    "gender": null,
+                    "title": "professional guide",
+                    "social_contact": {},
+                    "tags": [],
+                    "phone": null,
+                    "warning": 0,
+                    "hourly_rate": 0,
+                    "address": null,
+                    "about": null,
+                    "description": null,
+                    "video": null,
+                    "score": 0,
+                    "state": "init",
+                    "is_old_password": false,
+                    "salt": null,
+                    "uid": null,
+                    "slug": null,
+                    "place": null,
+                    "groups": [],
+                    "user_permissions": []
+                }
+                
+## Local Detail [/locals/{id}/]
+
++ Parameters
+    + id (number) - ID of the User in the form of an integer
+
+### Get a specific Local [GET]
+
++ Response 200 (application/json)
+
+        {
+            "first_name": "cheodao",
+            "last_name": "dao",
+            "photo": null,
+            "nationality": null,
+            "birthday": null,
+            "gender": null,
+            "title": "professional guide",
+            "place": null,
+            "social_contact": {},
+            "tags": [],
+            "phone": null,
+            "hourly_rate": 0,
+            "address": null,
+            "about": null,
+            "description": null,
+            "video": null,
+            "state": "init"
+        }
+
+### Update a specific Local [PUT]
+
++ Request (application/json)
+
+        {
+        }
+
++ Response 200 (application/json)
