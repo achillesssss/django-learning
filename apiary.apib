@@ -5,9 +5,9 @@ HOST: http://inspitrip.com/
 
 Users is a set of APIs for users who are staff
 
-## Users Collection [/users]
+## Users Collection [/users/]
 
-### List All Users [GET]
+### User List [GET]
 
 + Response 200 (application/json)
 
@@ -63,8 +63,8 @@ Users is a set of APIs for users who are staff
                     "place": null,
                     "groups": [],
                     "user_permissions": []
-        }
-        ]
+                }
+            ]
         }
 
 ### Create a New User [POST]
@@ -134,3 +134,134 @@ Users is a set of APIs for users who are staff
                   "groups": [],
                   "user_permissions": []
             }
+            
+## User Detail [/users/{id}/]
+
++ Parameters
+    + id (number) - ID of the User in the form of an integer
+
+
+### Get a specific User [GET]
+
++ Response 200 (application/json)
+
+        {
+            "id": 2,
+            "password": "",
+            "last_login": null,
+            "is_superuser": false,
+            "email": "",
+            "first_name": null,
+            "last_name": null,
+            "photo": null,
+            "nationality": null,
+            "birthday": null,
+            "gender": null,
+            "title": null,
+            "date_joined": "2017-05-19T10:56:16.072097Z",
+            "last_active": null,
+            "social_contact": {},
+            "verified_token": null,
+            "verified_token_start": null,
+            "verified_token_expired": "2017-05-19T10:56:16.072151Z",
+            "is_block": false,
+            "block_reason": null,
+            "is_verified": false,
+            "is_staff": false,
+            "is_active": false,
+            "is_localguide": false,
+            "total_reviews": 0,
+            "rating": 0,
+            "tags": [],
+            "phone": null,
+            "warning": 0,
+            "is_ambassador": false,
+            "is_licensed": null,
+            "is_featured": false,
+            "hourly_rate": 0,
+            "address": null,
+            "about": null,
+            "description": null,
+            "video": null,
+            "score": 0,
+            "state": "init",
+            "is_old_password": false,
+            "salt": null,
+            "uid": null,
+            "slug": null,
+            "place": null,
+            "groups": [],
+            "user_permissions": []
+        }
+        
+### Update a specific User [PUT]
+
++ Request (application/json)
+
+        {
+            "title": "guide",
+            "first_name": "Anh",
+            "last_name": "Nguyen",
+            "phone": "0654987332",
+            "hourly_rate": "10",
+            "is_staff": true,
+            "address": "Dao Duy Tu, Quan 10, Tp HCM",
+            "about": "Full service",
+            "description": "Professional services",
+            "is_localguide": true,
+        }
+        
++ Response 200 (application/json)
+
+        {
+            "id": 2,
+            "password": "",
+            "last_login": null,
+            "is_superuser": false,
+            "email": "",
+            "first_name": "cheodao",
+            "last_name": "dao",
+            "photo": null,
+            "nationality": null,
+            "birthday": null,
+            "gender": null,
+            "title": "professional guide",
+            "date_joined": "2017-05-19T10:56:16.072097Z",
+            "last_active": null,
+            "social_contact": {},
+            "verified_token": null,
+            "verified_token_start": null,
+            "verified_token_expired": "2017-05-19T10:56:16.072151Z",
+            "is_block": false,
+            "block_reason": null,
+            "is_verified": false,
+            "is_staff": false,
+            "is_active": false,
+            "is_localguide": true,
+            "total_reviews": 0,
+            "rating": 0,
+            "tags": [],
+            "phone": null,
+            "warning": 0,
+            "is_ambassador": false,
+            "is_licensed": null,
+            "is_featured": false,
+            "hourly_rate": 0,
+            "address": null,
+            "about": null,
+            "description": null,
+            "video": null,
+            "score": 0,
+            "state": "init",
+            "is_old_password": false,
+            "salt": null,
+            "uid": null,
+            "slug": "cheodao-dao",
+            "place": null,
+            "groups": [],
+            "user_permissions": []
+        }
+
+### Delete a specific User [DELETE]
+
++ Response 204
