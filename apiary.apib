@@ -355,6 +355,7 @@ Users is a set of APIs for users who are staff
             ]
         }
         
+
 ### Create a new Local [POST]
 
 + Request (application/json)
@@ -366,13 +367,13 @@ Users is a set of APIs for users who are staff
             "last_name": "Dao"
         }
         
-+ Repsonse 201 (application/json)
++ Response 201 (application/json)
 
-        + Headers
+    + Headers
         
                 Location: /locals/2/
                 
-        + Body
+    + Body
                 
                 {
                     "id": 7,
@@ -406,6 +407,7 @@ Users is a set of APIs for users who are staff
                     "groups": [],
                     "user_permissions": []
                 }
+
                 
 ## Local Detail [/locals/{id}/]
 
@@ -470,3 +472,42 @@ Users is a set of APIs for users who are staff
             "video": null,
             "state": "init"
         }
+        
+        
+# group Booking 
+
+## Booking Request [/bookingrequests/]
+
+### Create Booking Request [POST]
+
++  Request (application/json)
+
+        {
+            "email": "nguyen@mail.com",
+            "first_name": "Nguyen",
+            "last_name": "Dao",
+            "booking_dates": "2017-05-19T10:56:16.072097Z",
+            "participants": 4,
+            "total_hours": 10,
+            "message": "Hello cho xin vai do",
+            "discount_code": "DM123AHIHI",
+            "actual_cost": 100,
+            "booking_fee": 20,
+            "total_cost": 120,
+            "payment_status": "PAID"
+        }
+
++ Response 201 (application/json)
+
+    + Headers
+
+            Location: /bookingrequests/2
+
+    + Body
+
+            {
+                  "id": 2,
+                  "booking_status": "PENDING",
+                  "traveller": 32,
+                  "local_insider": 33
+            }
