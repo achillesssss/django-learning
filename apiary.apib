@@ -5,7 +5,7 @@ HOST: http://inspitrip.com/
 # group Users
 Users is a set of APIs for users who are staff
 
-## Users Collection [/users/]
+## Users Collection [/apiv2/users/]
 
 ### User List [GET]
 
@@ -176,7 +176,7 @@ Users is a set of APIs for users who are staff
                   "user_permissions": []
             }
             
-## User Detail [/users/{id}/]
+## User Detail [/apiv2/users/{id}/]
 
 + Parameters
     + id (number) - ID of the User in the form of an integer
@@ -309,7 +309,7 @@ Users is a set of APIs for users who are staff
 
 # group Locals
 
-## Locals Collection [/locals/]
+## Locals Collection [/apiv2/locals/]
 
 ### Local List [GET]
 
@@ -409,7 +409,7 @@ Users is a set of APIs for users who are staff
                 }
 
                 
-## Local Detail [/locals/{id}/]
+## Local Detail [/apiv2/locals/{id}/]
 
 + Parameters
     + id (number) - ID of the User in the form of an integer
@@ -421,33 +421,39 @@ Users is a set of APIs for users who are staff
         {
             "first_name": "cheodao",
             "last_name": "dao",
-            "photo": null,
+            "photo": "/uploads/user/20170413_49956ZzIBC.png",
             "nationality": "Thailand",
             "birthday": null,
             "gender": "male",
             "title": "professional guide",
-            "place": null,
+            "place": { "id": 7, "name": "Ho Chi Minh City" },
             "social_contact": {},
-            "tags": [],
+            "tags": [ "music", "food", "adventure" ],
             "phone": "012354798",
-            "hourly_rate": "10.00",
+            "hourly_rate": 10.0,
             "address": "123 Pasteur Quan 1 HCM,
             "about": "The authentication that comes with Django is good enough for most common cases",
             "description": "to your projects needs involves understanding what points ",
             "video": null,
-            "state": "init"
+            "state": "init",
+            "activities": [1,2,3,4,5],
+            "languages": [1,2,3,4,5],
+            "transports": [1,2,3,4,5],
+            "email": "cheodao@gmail.com",
         }
 
 ### Update a specific Local [PUT]
 
 + Request (application/json)
 
-        {
-            "email": "nguyen@mail.com",
-            "password": "nguyendeptrai",
-            "first_name": "Cheo",
-            "last_name": "Dao",
-        }
+    + Body
+
+            {
+                "email": "nguyen@mail.com",
+                "password": "nguyendeptrai",
+                "first_name": "Cheo",
+                "last_name": "Dao", 
+            }
 
 + Response 200 (application/json)
 
@@ -456,16 +462,16 @@ Users is a set of APIs for users who are staff
             "password": "asdfasdfasdf",
             "first_name": "Anh Nguyen Dao",
             "last_name": "Dao Anh",
-            "photo": null,
-            "nationality": null,
+            "photo": "/uploads/user/20170413_49956ZzIBC.png",
+            "nationality": "Thailand",
             "birthday": null,
-            "gender": null,
-            "title": null,
-            "place": null,
+            "gender": "male",
+            "title": "professional guide",
+            "place": { "id": 7, "name": "Ho Chi Minh City" },
             "social_contact": {},
             "tags": [],
-            "phone": null,
-            "hourly_rate": 0,
+            "phone": "321654987",
+            "hourly_rate": 10,
             "address": "Dao Duy Tu",
             "about": "Full service",
             "description": null,
@@ -476,38 +482,71 @@ Users is a set of APIs for users who are staff
         
 # group Booking 
 
-## Booking Request [/bookings/]
+## Booking Request [/apiv2/bookings/]
 
 ### Create Booking Request [POST]
 
-+  Request (application/json)
-
-        {
-            "email": "nguyen@mail.com",
-            "first_name": "Nguyen",
-            "last_name": "Dao",
-            "booking_dates": "2017-05-19T10:56:16.072097Z",
-            "participants": 4,
-            "total_hours": 10,
-            "message": "Hello cho xin vai do",
-            "discount_code": "DM123AHIHI",
-            "actual_cost": 100,
-            "booking_fee": 20,
-            "total_cost": 120,
-            "payment_status": "PAID"
-        }
-
-+ Response 201 (application/json)
-
-    + Headers
-
-            Location: /bookings/2
-
++ Request (application/json)
+    
     + Body
 
             {
-                  "id": 2,
-                  "booking_status": "PENDING",
-                  "traveller": 32,
-                  "local_insider": 33
+                "email": "nguyen@mail.com",
+                "first_name": "Nguyen",
+                "last_name": "Dao",
+                "booking_dates": "2017-05-19T10:56:16.072097Z",
+                "participants": 4,
+                "total_hours": 10,
+                "message": "Hello cho xin vai do",
+                "discount_code": "DM123AHIHI",
+                "actual_cost": 100,
+                "booking_fee": 20,
+                "total_cost": 120,
+                "payment_status": "PAID",
+                "local_insider_id": 12,
             }
+
++ Response 201 (application/json)
+
+            {
+                "booking_id": 2,
+                "booking_status": "PENDING",
+                "traveller_id": 32,
+                "local_insider_id": 33,
+            }
+            
++ Response 400 (application/json)
+    
+            {
+                "error": "Invalid input",
+            }
+    
+
+## Booking Fee [/apiv2/bookingfee/]
+
+### Booking Fee [POST]
+Calculate booking fee
+
++ Request (application/json)
+    
+    + Body
+    
+            {
+                "participants": 3,
+                "experience_id": 2,
+                "date": "2017-04-10T11:57:03.116206Z",
+                "local_insider_id": 4, 
+                "coupon": "DMAHIHI",
+            }
+
++ Response 202 (application/json)
+            
+        {
+            "total_cost": 250,
+        }
+            
++ Response 400 (application/json)
+
+        {
+            "error": "The coupon code is not valid",
+        }
